@@ -4,6 +4,7 @@ import { Grid, makeStyles } from "@material-ui/core";
 
 import Welcome, { ErrorPage } from "./component/Welcome";
 import Navbar from "./component/Navbar";
+import Logout from "./component/Logout";
 import Signup from "./component/Signup";
 import MessagePopup from "./utils/MessagePopup";
 
@@ -45,6 +46,9 @@ function App() {
               </Route>
               <Route exact path="/signup">
                 <Signup />
+              </Route>
+              <Route exact path="/logout">
+                <Logout />
               </Route>
               <Route>
                 <ErrorPage />

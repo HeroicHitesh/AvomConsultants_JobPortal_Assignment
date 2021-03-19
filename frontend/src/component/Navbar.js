@@ -7,6 +7,8 @@ import {
 } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 
+import isAuth from "../utils/isAuth";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -38,14 +40,22 @@ const Navbar = () => {
         >
           Job Portal
         </Typography>
-        <>
-          <Button color="inherit" onClick={() => handleClick("/login")}>
-            Login
-          </Button>
-          <Button color="inherit" onClick={() => handleClick("/signup")}>
-            Signup
-          </Button>
-        </>
+        {isAuth() ? (
+          <>
+            <Button color="inherit" onClick={() => handleClick("/logout")}>
+              Logout
+            </Button>
+          </>
+        ) : (
+          <>
+            <Button color="inherit" onClick={() => handleClick("/login")}>
+              Login
+            </Button>
+            <Button color="inherit" onClick={() => handleClick("/signup")}>
+              Signup
+            </Button>
+          </>
+        )}
       </Toolbar>
     </AppBar>
   );
