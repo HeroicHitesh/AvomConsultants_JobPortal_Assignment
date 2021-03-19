@@ -1,12 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+
+import Welcome, { ErrorPage } from "./component/Welcome";
+
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Job Portal</h1>
-      <p>Find your dream job with us!!!</p>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/">
+          <Welcome />
+        </Route>
+        <Route>
+          <ErrorPage />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 }
 
