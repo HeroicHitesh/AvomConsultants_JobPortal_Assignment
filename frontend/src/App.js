@@ -1,8 +1,11 @@
+import { createContext, useState } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { Grid, makeStyles } from "@material-ui/core";
 
 import Welcome, { ErrorPage } from "./component/Welcome";
 import Navbar from "./component/Navbar";
+import Signup from "./component/Signup";
+import MessagePopup from "./utils/MessagePopup";
 
 import "./App.css";
 
@@ -19,25 +22,48 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+export const SetPopupContext = createContext();
+
 function App() {
   const classes = useStyles();
+  const [popup, setPopup] = useState({
+    open: false,
+    severity: "",
+    message: "",
+  });
   return (
     <BrowserRouter>
-      <Grid container direction="column">
-        <Grid item xs>
-          <Navbar />
+      <SetPopupContext.Provider value={setPopup}>
+        <Grid container direction="column">
+          <Grid item xs>
+            <Navbar />
+          </Grid>
+          <Grid item className={classes.body}>
+            <Switch>
+              <Route exact path="/">
+                <Welcome />
+              </Route>
+              <Route exact path="/signup">
+                <Signup />
+              </Route>
+              <Route>
+                <ErrorPage />
+              </Route>
+            </Switch>
+          </Grid>
         </Grid>
-        <Grid item className={classes.body}>
-          <Switch>
-            <Route exact path="/">
-              <Welcome />
-            </Route>
-            <Route>
-              <ErrorPage />
-            </Route>
-          </Switch>
-        </Grid>
-      </Grid>
+        <MessagePopup
+          open={popup.open}
+          setOpen={(status) =>
+            setPopup({
+              ...popup,
+              open: status,
+            })
+          }
+          severity={popup.severity}
+          message={popup.message}
+        />
+      </SetPopupContext.Provider>
     </BrowserRouter>
   );
 }
