@@ -7,6 +7,7 @@ import Navbar from "./component/Navbar";
 import Signup from "./component/Signup";
 import Login from "./component/Login";
 import Logout from "./component/Logout";
+import Upload from "./component/Upload";
 import MessagePopup from "./utils/MessagePopup";
 
 import "./App.css";
@@ -53,6 +54,9 @@ function App() {
               </Route>
               <Route exact path="/logout">
                 <Logout />
+              </Route>
+              <Route exact path="/upload">
+                <Upload />
               </Route>
               <Route>
                 <ErrorPage />

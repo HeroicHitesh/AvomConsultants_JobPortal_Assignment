@@ -96,7 +96,7 @@ const Login = () => {
   };
 
   return loggedin ? (
-    <Redirect to="/" />
+    <Redirect to="/upload" />
   ) : (
     <Paper elevation={3} className={classes.body}>
       <Grid container direction="column" spacing={4} alignItems="center">

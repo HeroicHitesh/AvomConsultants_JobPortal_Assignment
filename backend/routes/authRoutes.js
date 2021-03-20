@@ -8,9 +8,10 @@ const JobSeeker = require("../db/JobSeeker");
 
 const router = express.Router();
 
+// Post User's Personal Details while signing up
 router.post("/signup", (req, res) => {
   const data = req.body;
-  let user = new User({
+  user = new User({
     email: data.email,
     password: data.password,
   });
@@ -23,9 +24,6 @@ router.post("/signup", (req, res) => {
         name: data.name,
         education: data.education,
         skills: data.skills,
-        rating: data.rating,
-        resume: data.resume,
-        profile: data.profile,
       });
 
       userDetails
@@ -54,6 +52,7 @@ router.post("/signup", (req, res) => {
     });
 });
 
+// Post login info for verification
 router.post("/login", (req, res, next) => {
   passport.authenticate(
     "local",

@@ -36,6 +36,7 @@ app.use(express.json());
 app.use(passportConfig.initialize());
 
 // Routing
+app.use("/api", require("./routes/apiRoutes"));
 app.use("/auth", require("./routes/authRoutes"));
 app.use("/upload", require("./routes/uploadRoutes"));
 
